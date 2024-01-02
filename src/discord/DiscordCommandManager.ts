@@ -23,10 +23,11 @@ const slashCommandExecute = async (
   let url = interaction.options.getString("url");
 
   if (
-    !(
-      member.id in
-      ["1049682162468802571", "1072144162335502416", "294146247512555521"]
-    )
+    ![
+      "1049682162468802571",
+      "1072144162335502416",
+      "294146247512555521",
+    ].includes(member.id)
   ) {
     await interaction.reply({
       content: ":x: 권한이 없습니다!",
