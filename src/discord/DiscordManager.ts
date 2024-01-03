@@ -37,8 +37,8 @@ const handleReaction = async (
         }
 
         if (roleId !== undefined) {
-          const role = message.guild!.roles.cache.get(roleId);
-          const member = message.guild!.members.cache.get(user.id);
+          const role = await message.guild!.roles.fetch(roleId);
+          const member = await message.guild!.members.fetch(user.id);
 
           if (addReaction) {
             try {
