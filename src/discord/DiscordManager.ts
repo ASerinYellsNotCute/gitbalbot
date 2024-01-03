@@ -8,12 +8,14 @@ import {
   Routes,
   User,
   MessageReaction,
+  PartialMessageReaction,
+  PartialUser,
 } from "discord.js";
 import { slashCommand, slashCommandExecute } from "./DiscordCommandManager";
 
 const handleReaction = async (
-  reaction: MessageReaction,
-  user: User,
+  reaction: MessageReaction | PartialMessageReaction,
+  user: User | PartialUser,
   addReaction: boolean
 ): Promise<void> => {
   if (!user.bot) {
@@ -100,13 +102,11 @@ async function botMain(): Promise<void> {
   });
 
   client.on(Events.MessageReactionAdd, async (reaction, user) => {
-    if (!reaction.partial && !user.partial)
-      handleReaction(reaction, user, true);
+    await handleReaction(reaction, user, true);
   });
 
   client.on(Events.MessageReactionRemove, async (reaction, user) => {
-    if (!reaction.partial && !user.partial)
-      handleReaction(reaction, user, false);
+    await handleReaction(reaction, user, false);
   });
 
   client.on(Events.InteractionCreate, async (interaction) => {
