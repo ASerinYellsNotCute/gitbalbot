@@ -86,7 +86,7 @@ async function botMain(): Promise<void> {
     client.application!!.commands.create(slashCommand, guild.id);
 
     try {
-      rest.put(
+      await rest.put(
         Routes.applicationGuildCommands("1152253582175903844", guild.id),
         {
           body: [slashCommand.toJSON()],
