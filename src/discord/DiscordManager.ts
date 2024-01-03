@@ -44,13 +44,13 @@ const handleReaction = async (
 
           if (addReaction) {
             try {
-              member!.roles.add(role!);
+              await member!.roles.add(role!);
             } catch (error) {
               console.error("Something went wrong when adding a role:", error);
             }
           } else {
             try {
-              member!.roles.remove(role!);
+              await member!.roles.remove(role!);
             } catch (error) {
               console.error(
                 "Something went wrong when removing a role:",
