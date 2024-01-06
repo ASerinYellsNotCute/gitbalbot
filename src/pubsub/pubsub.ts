@@ -39,7 +39,8 @@ async function serverMain() {
     const challenge = req.query["hub.challenge"];
 
     if (challenge) {
-      res.status(200).send(challenge);
+      const challengeObject = challenge as Record<string, string>;
+      res.status(200).send(Object.values(challengeObject)[0]);
     } else {
       res.status(200).send("");
     }
